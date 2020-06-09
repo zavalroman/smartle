@@ -40,7 +40,7 @@ Triangle::~Triangle()
 
 void Triangle::setAngle(qreal angle)
 {
-    this->angle = angle;
+    //this->angle = angle;
 }
 
 void Triangle::thrust()
@@ -89,6 +89,7 @@ void Triangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
 void Triangle::slotTarget(QPointF point)
 {
+    return;
     /// Определяем расстояние до цели
     target = point;
     QLineF lineToTarget(QPointF(0, 0), mapFromScene(target));
@@ -115,6 +116,10 @@ void Triangle::slotTarget(QPointF point)
 
 void Triangle::slotGameTimer()
 {
+    angle = rotation() * Pi / 180;
+    angle = angle - Pi / 2;
+    //qDebug() << angle;
+
     qreal x_shift = force * cos(angle);
     qreal y_shift = force * sin(angle);
 
